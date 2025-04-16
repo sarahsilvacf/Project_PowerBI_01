@@ -1,0 +1,17 @@
+expression 'Tirar Acento' =
+		(texto as text) =>
+		let
+		    ComAcento = Text.ToList("ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðñòóôõöùúûüýÿ"),
+		    SemAcento = Text.ToList("SZszYAAAAAACEEEEIIIIDNOOOOOUUUUYaaaaaaceeeeiiiidnooooouuuuyy") ,
+		    Palavras = List.Zip({ComAcento,SemAcento}),
+		    TextoAjustado = Text.ToList(texto),
+		    Subistituicao = List.ReplaceMatchingItems(TextoAjustado,Palavras),
+		    Resultado = Text.Combine(Subistituicao)
+		in
+		    Resultado
+	lineageTag: 3f6537da-46a3-4e04-8fdb-957eb4d76cfe
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+

@@ -1,0 +1,4 @@
+relationship 44261f3c-4751-1423-6b24-d5891da8785e
+	fromColumn: Production-State.Year
+	toColumn: Table_Year.Ano
+

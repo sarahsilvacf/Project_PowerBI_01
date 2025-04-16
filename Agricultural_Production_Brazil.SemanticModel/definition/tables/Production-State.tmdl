@@ -1,0 +1,201 @@
+table Production-State
+	lineageTag: c9b31688-0e07-4f0f-843c-3dc6329445da
+
+	measure DimAno = ```
+			
+			DATATABLE(
+			    "Ano", INTEGER,
+			    {
+			        {2019},
+			        {2020},
+			        {2021},
+			        {2022},
+			        {2023}
+			    }
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 0e4f33dd-d3a2-4fc1-9fb5-40bdab4dfb7a
+
+	measure 'Produção Total Batata' =
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Produto] = "Batata-Inglesa"
+			)
+		formatString: 0
+		lineageTag: 4dde7c90-1f1c-4cd4-855e-2b3206c2bc7d
+
+	measure 'Produção Total Amendoin' = ```
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Produto] = "Amendoin"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 792d68b8-6c7a-424b-89d2-aac8f1e6ff4c
+
+	measure 'Produção Total Milho' =
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Produto] = "Milho"
+			)
+		formatString: 0
+		lineageTag: 68c847c1-1fdc-4669-bae6-5a9d390b325a
+
+	measure 'Produção Total Feijao' =
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Produto] = "Feijao"
+			)
+		formatString: 0
+		lineageTag: 1f3fc501-3789-4f56-b729-6bb65fd4f376
+
+	measure 'Produção Total Sudeste' = ```
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Região] = "Sudeste"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: e2ba093f-1a18-4fd2-84b6-797b147c7cc3
+
+	measure 'Produção Total Nordeste' = ```
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Região] = "Nordeste"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: dbf731a9-dbcd-4f33-b1b7-597e5a6f8e1e
+
+	measure 'Produção Total Norte' = ```
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Região] = "Norte"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: f0cc2d82-3544-4a19-be1c-9cb7c7033fe5
+
+	measure 'Produção Total Sul' = ```
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Região] = "Sul"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 6f91bb68-2520-48ef-8a28-3fa9821863e8
+
+	measure 'Produção Total Centro-Oeste' = ```
+			CALCULATE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    'Production-State'[Região] = "Centro-Oeste"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 4946f181-49e0-4a60-bc9b-13ba0f8686fb
+
+	measure 'Total Prod. Por região' =
+			
+			
+			SUM('Production-State'[Quantidade Produzida])
+		formatString: 0
+		lineageTag: 5854c1f0-0ec8-4b8e-8050-369935f2fadd
+
+	measure 'Prod em Mi' =
+			
+			DIVIDE(
+			    SUM('Production-State'[Quantidade Produzida]),
+			    1000000,
+			    0  // Retorna 0 se houver erro
+			)
+		lineageTag: 895e9495-adc8-49b7-b716-a6c741909bad
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sigla
+		dataType: string
+		lineageTag: 3d5d5cbf-6ee6-48f7-a1f2-a89b42933557
+		summarizeBy: none
+		sourceColumn: Sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: a3f46b0d-e4b6-4068-9d79-3482814958c2
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Região
+		dataType: string
+		lineageTag: f9877426-e1f9-46dc-a2be-f20014926451
+		summarizeBy: none
+		sourceColumn: Região
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto
+		dataType: string
+		lineageTag: 02777e40-87eb-4f46-bb8d-9cabe2505b13
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: a7017efe-3a3d-4af7-8e99-99d617ffe105
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantidade Produzida'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d719c89-d94e-4447-8b08-bad604e8122b
+		summarizeBy: sum
+		sourceColumn: Quantidade Produzida
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Ano Hierarquia'
+		lineageTag: 334a34a8-c766-485d-877b-7667c40bea37
+
+		level Year
+			lineageTag: 4f913340-e33e-44fb-84b6-bd65497d99f7
+			column: Year
+
+	partition Production-State = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\sara.silva\Downloads\Projetp PBI Linkedin\Produção de Agrícola - Total Oficial - Tentativa 01.xlsx"), null, true),
+				    #"Estado-Quant Prod_Sheet" = Fonte{[Item="Estado-Quant Prod",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Estado-Quant Prod_Sheet", [PromoteAllScalars=true]),
+				    #"Função Personalizada Invocada" = Table.AddColumn(#"Cabeçalhos Promovidos", "Tirar Acento", each #"Tirar Acento"([Estado])),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Função Personalizada Invocada",{"Estado"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Removidas",{{"Tirar Acento", "Estado"}}),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Colunas Renomeadas",{"Sigla", "Estado", "Região", "Produto", "Ano", "Quantidade Produzida"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Reordenadas",{{"Sigla", type text}, {"Estado", type text}, {"Região", type text}, {"Produto", type text}, {"Ano", Int64.Type}, {"Quantidade Produzida", Int64.Type}}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Tipo Alterado",{{"Ano", "Year"}})
+				in
+				    #"Colunas Renomeadas1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

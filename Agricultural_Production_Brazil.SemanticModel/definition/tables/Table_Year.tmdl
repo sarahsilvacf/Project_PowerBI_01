@@ -1,0 +1,30 @@
+table Table_Year
+	lineageTag: 5c8dd679-47a0-4dab-9fb9-6ff5f23411ed
+
+	column Ano
+		formatString: 0
+		lineageTag: ead9a576-a755-4727-94ec-49ad13844473
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table_Year = calculated
+		mode: import
+		source = ```
+				DATATABLE(
+				    "Ano", INTEGER,
+				    {
+				        {2019},
+				        {2020},
+				        {2021},
+				        {2022},
+				        {2023}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 0aad8a2011914d1bbe2eed4dc6523bc0
+
