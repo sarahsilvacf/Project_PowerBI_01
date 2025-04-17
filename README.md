@@ -1,12 +1,14 @@
 🌱 Agricultural Production Analysis - Power BI Dashboard
+
   🌍 Overview
+
 Interactive dashboard analyzing production volumes across Brazilian states (2019-2023), featuring:
 
-Annual quantity trends
+📂 Annual quantity trends
 
-Regional performance benchmarking
+📂 Regional performance benchmarking
 
-Key productivity insights
+📂 Key productivity insights
 
 📊 Core Metrics
 
@@ -39,6 +41,10 @@ Top 3 producing states: MT, PR, RS
 🔍 🌽 3. Crop Performance
 Top Crops
 Corn accounted for 58% of total volume
+
+📬 Connect: LinkedIn Profile https://www.linkedin.com/in/sarah-silva-0b9061142/
+
+📌 Dataset Sources: IBGE SIDRA  https://sidra.ibge.gov.br/
 
 
 
