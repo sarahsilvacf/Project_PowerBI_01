@@ -47,7 +47,8 @@ Corn accounted for 58% of total volume
 📌 Dataset Sources: IBGE SIDRA  https://sidra.ibge.gov.br/
 
   
-![image](https://github.com/user-attachments/assets/bfc814f4-d3e7-4b00-95f1-4c36a5976e2d)
+![Visual_Production](https://github.com/user-attachments/assets/e004a582-4eb4-4b7c-8365-e74e115521e1)
+
 
 
 
